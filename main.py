@@ -21,36 +21,6 @@ import base64
 # Streamlit 앱 제목
 st.title("응급처치 질문 응답 시스템")
 
-# 로고 이미지 표시 함수
-def show_logo():
-    logo_path = "logo.png"
-    try:
-        # 이미지 로드 및 Base64 인코딩
-        with open(logo_path, "rb") as img_file:
-            logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
-        
-        # CSS를 통해 로고를 오른쪽 상단에 고정
-        st.markdown(
-            f"""
-            <style>
-            .fixed-logo {{
-                position: fixed;
-                top: 10px;
-                right: 10px;
-                width: 100px;
-                z-index: 100;
-            }}
-            </style>
-            <img src="data:image/png;base64,{logo_base64}" class="fixed-logo">
-            """,
-            unsafe_allow_html=True
-        )
-    except FileNotFoundError:
-        st.error("로고 이미지 파일을 찾을 수 없습니다. 경로를 확인하세요.")
-
-# 로고 이미지 표시 함수 호출
-show_logo()
-
 # 모델 및 데이터베이스 설정
 gemini_1_5_flash = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.0)
 
